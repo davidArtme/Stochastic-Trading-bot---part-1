@@ -19,7 +19,7 @@ def gen_signature(params): # генерируем сигнатуру
 client = api.Binance_api(api_key=binance_testnetFutures_api_keys, secret_key=binance_testnetFutures_api_secret) # подставляем API данные тестнет версии бинанс
 symbol = "ETHUSDT" # валютная пара
 qty = 1 # количество
-interval = '1s' # 1m 3m 5m 15m 30m 1h 2h 4h 6h 8h 12h 1d 3d 1w 1M - таймфрейм торговли на фьючерсах
+interval = '1m' # 1m 3m 5m 15m 30m 1h 2h 4h 6h 8h 12h 1d 3d 1w 1M - таймфрейм торговли на фьючерсах
 limit = 60
 
 socket_futures = f'wss://fstream.binance.com/stream?streams={symbol.lower()}@kline_{interval}' # фьючерсы
@@ -125,7 +125,7 @@ def stochastic_strategy2(client, K):
     print('-' * 150)
 
 if __name__ == '__main__':
-    ws_binance = api.Socket_conn_Binance_version2(socket_spot)
+    ws_binance = api.Socket_conn_Binance_version2(socket_futures)
     threading.Thread(target=ws_binance.run_forever).start()
 
 
